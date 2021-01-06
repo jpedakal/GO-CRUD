@@ -16,6 +16,6 @@ func PostData() {
 }
 
 // HelloHandler to send data
-var HelloHandler = func(w http.ResponseWriter, req *http.Request) {
+func HelloHandler(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, "Welcome To 2021\n")
 }
