@@ -1,11 +1,15 @@
 package main
 
 import (
-	"fmt"
-	mongo "utils"
+	"io"
+	"net/http"
 )
 
 func main() {
-	
-	fmt.Println("Successfully connected")
+
+	helloHandler := func(w http.ResponseWriter, req *http.Request) {
+		io.WriteString(w, "Hello world\n")
+	}
+	http.HandleFunc("/hello", helloHandler)
+	http.ListenAndServe(":8000", nil)
 }
