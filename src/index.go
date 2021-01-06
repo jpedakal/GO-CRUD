@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	mongo.Connect()
+	
 	fmt.Println("Successfully connected")
 }
