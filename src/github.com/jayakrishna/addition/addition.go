@@ -1,12 +1,12 @@
-package main 
+package main
 
-import "fmt"
+import (
+	"fmt"
 
-func add(a, b int) int {
-  return a+b
-}
+	d "github.com/jayakrishna/maths"
+)
 
 func main() {
-  sum := add(4, 5)
-  fmt.Printf("Hello, Gopher! Your result is %d\n", sum)
+	sum := d.Add(4, 5)
+	fmt.Printf("Hello, Gopher! Your result is %d\n", sum)
 }
