@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"mongo"
+	d "mongo"
 )
 func main() {
 	d.Connect()
