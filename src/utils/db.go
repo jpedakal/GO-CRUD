@@ -9,14 +9,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// Connect export fucntion
+var dbConn *mongo.Database
+
+// Connect to database
 func Connect() {
 	URI := "mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb"
 	clientOptions := options.Client().ApplyURI(URI)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	err = client.Ping(context.TODO(), nil)
 
@@ -25,24 +27,25 @@ func Connect() {
 	}
 
 	fmt.Println("Connected to MongoDB")
+	dbConn= client.Database("godata")
 }
 
-// InsertData func must be Exported, Capitalized, and comment added.
+// InsertData to database
 func InsertData() {
-	collection := client.Database("godata").Collection("users")
+	collection := dbConn.Collection("users")
 }
 
-// GetData func must be Exported, Capitalized, and comment added.
+// GetData from database
 func GetData() {
 
 }
 
-// UpdateData func must be Exported, Capitalized, and comment added.
+// UpdateData in database
 func UpdateData() {
 
 }
 
-// DeleteData func must be Exported, Capitalized, and comment added.
+// DeleteData from database
 func DeleteData() {
 
 }
