@@ -47,8 +47,6 @@ func InsertData(name string, age int, city string) {
 	if err != nil{
 		log.Fatal(err)
 	}
-
-	fmt.Println("InsertId",result.InsertedID)
 }
 
 // GetData from database
