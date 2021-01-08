@@ -30,8 +30,3 @@ func PostData(rw http.ResponseWriter, req *http.Request) {
 	database.InsertData(data.Name, data.Age, data.City)
 
 }
-
-// HelloHandler to send data
-func HelloHandler(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "Welcome To 2021\n")
-}
