@@ -2,16 +2,15 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	database "utils"
 )
 
 type myData struct {
-	Name string   `json:"name"`
-	Age  int      `json:"age"`
-	City string   `json:"city"`
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+	City string `json:"city"`
 }
 
 // GetData from database
@@ -29,7 +28,7 @@ func PostData(rw http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	database.InsertData(data.Name, data.Age, data.City)
-	
+
 }
 
 // HelloHandler to send data
