@@ -43,6 +43,12 @@ func InsertData(name string, age int, city string) {
 	collection := dbConn.Collection("users")
 
 	result, err := collection.InsertOne(context.TODO(), post)
+
+	if err != nil{
+		log.Fatal(err)
+	}
+
+	fmt.Println("InsertId",result.InsertedID)
 }
 
 // GetData from database
