@@ -48,7 +48,7 @@ func InsertData(name string, age int, city string) {
 		log.Fatal(err)
 	}
 
-	return
+	return result
 }
 
 // GetData from database
