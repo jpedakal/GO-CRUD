@@ -42,7 +42,7 @@ func InsertData(name string, age int, city string) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
-	result, err := collection.InsertOne(context.TODO(), data)
+	result, err := collection.InsertOne(context.TODO(), post)
 }
 
 // GetData from database
