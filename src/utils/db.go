@@ -38,7 +38,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) {
+func InsertData(name string, age int, city string) string {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
@@ -47,6 +47,10 @@ func InsertData(name string, age int, city string) {
 	if err != nil{
 		log.Fatal(err)
 	}
+
+	res := result.InsertedID
+
+	return res
 }
 
 // GetData from database
