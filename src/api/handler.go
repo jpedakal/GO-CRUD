@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	database "utils"
 )
 
 type myData struct {
@@ -27,8 +28,8 @@ func PostData(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	database.InsertData(data.Name, data.Age, data.City)
 	
-	fmt.Println("data", data)
 }
 
 // HelloHandler to send data

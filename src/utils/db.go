@@ -9,6 +9,13 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Post to export data
+type Post struct{
+	Name string `json:"name,omitempty"`
+	Age int     `json:"age,omitempty"`
+	City string `json:"city,omitempty"`
+}
+
 var dbConn *mongo.Database
 
 // Connect to database
@@ -32,10 +39,10 @@ func Connect() {
 
 // InsertData to database
 func InsertData(name string, age int, city string) {
-	
-	//collection := dbConn.Collection("users")
+	post := Post{name, age, city}
+	collection := dbConn.Collection("users")
 
-	//result, err := collection.InsertOne(context.TODO(),)
+	result, err := collection.InsertOne(context.TODO(), data)
 }
 
 // GetData from database
