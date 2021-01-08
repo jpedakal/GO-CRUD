@@ -31,8 +31,10 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData() {
+func InsertData(name string, age int, city string) {
 	collection := dbConn.Collection("users")
+
+	result, err := collection.InsertOne(context.TODO(),)
 }
 
 // GetData from database
