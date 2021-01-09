@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -18,7 +19,7 @@ type Post struct {
 
 // InsertOneResult exporting
 type InsertOneResult struct {
-	InsertedID interface{}
+	InsertedID primitive.ObjectID `bson:"_id"`
 }
 
 var dbConn *mongo.Database
@@ -55,7 +56,7 @@ func InsertData(name string, age int, city string) (*InsertOneResult, error) {
 
 	id := result.InsertedID
 
-	return id, err
+	return  err
 }
 
 // GetData from database
