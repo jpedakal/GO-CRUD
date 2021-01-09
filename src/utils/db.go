@@ -19,7 +19,7 @@ type Post struct {
 
 // InsertOneResult exporting
 type InsertOneResult struct {
-	InsertedID primitive.ObjectID `bson:"_id"`
+	InsertedID interface{}
 }
 
 var dbConn *mongo.Database
@@ -54,9 +54,9 @@ func InsertData(name string, age int, city string) (*InsertOneResult, error) {
 		log.Fatal(err)
 	}
 
-	id := result.InsertedID
+	id := result.InsertedID.(primitive.ObjectID)
 
-	return  err
+	return id, err
 }
 
 // GetData from database
