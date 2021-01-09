@@ -17,7 +17,7 @@ type Post struct {
 }
 
 // InsertOneResult exporting
-type InsertOneResult struct{
+type InsertOneResult struct {
 	InsertedID interface{}
 }
 
@@ -53,7 +53,9 @@ func InsertData(name string, age int, city string) (*InsertOneResult, error) {
 		log.Fatal(err)
 	}
 
-	return result.InsertedID, err
+	id := result.InsertedID
+
+	return id, err
 }
 
 // GetData from database
