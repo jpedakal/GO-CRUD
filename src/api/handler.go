@@ -19,7 +19,7 @@ func GetData() {
 }
 
 // PostData into database
-func PostData(rw http.ResponseWriter, req *http.Request) {
+func PostData(w http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 
 	var data myData
@@ -27,6 +27,11 @@ func PostData(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	database.InsertData(data.Name, data.Age, data.City)
+	res, err := database.InsertData(data.Name, data.Age, data.City)
 
+	if err != nil {
+		io.WriteCloser(w, err)
+	} else {
+		io.Writer(w, res)
+	}
 }

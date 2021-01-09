@@ -44,7 +44,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) (*InsertOneResult, error) {
+func InsertData(name string, age int, city string) (int, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
@@ -56,7 +56,7 @@ func InsertData(name string, age int, city string) (*InsertOneResult, error) {
 
 	id := result.InsertedID.(primitive.ObjectID)
 
-	return id, err
+	return fmt.Println(id)
 }
 
 // GetData from database
