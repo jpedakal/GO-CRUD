@@ -32,6 +32,6 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		io.WriteCloser(rw, err)
 	} else {
-		io.Writer(w, res)
+		io.WriteSeeker(w, res)
 	}
 }
