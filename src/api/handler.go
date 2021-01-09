@@ -30,7 +30,7 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 	res, err := database.InsertData(data.Name, data.Age, data.City)
 
 	if err != nil {
-		io.WriteCloser(w, err)
+		io.WriterAt(rw, err)
 	} else {
 		io.Writer(w, res)
 	}
