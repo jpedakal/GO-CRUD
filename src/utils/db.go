@@ -16,6 +16,11 @@ type Post struct {
 	City string `json:"city,omitempty"`
 }
 
+// InsertOneResult exporting
+type InsertOneResult struct{
+	InsertedID interface{}
+}
+
 var dbConn *mongo.Database
 
 // Connect to database
@@ -38,7 +43,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) (*mongo.InsertResult, error) {
+func InsertData(name string, age int, city string) (*InsertOneResult, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
@@ -48,7 +53,7 @@ func InsertData(name string, age int, city string) (*mongo.InsertResult, error) 
 		log.Fatal(err)
 	}
 
-	return result, err
+	return result.InsertedID, err
 }
 
 // GetData from database
