@@ -10,9 +10,9 @@ import (
 )
 
 // Post to export data
-type Post struct{
+type Post struct {
 	Name string `json:"name,omitempty"`
-	Age int     `json:"age,omitempty"`
+	Age  int    `json:"age,omitempty"`
 	City string `json:"city,omitempty"`
 }
 
@@ -34,21 +34,21 @@ func Connect() {
 	}
 
 	fmt.Println("Connected to MongoDB")
-	dbConn= client.Database("godata")
+	dbConn = client.Database("godata")
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) {
+func InsertData(name string, age int, city string) (*mongo.InsertResult, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
 	result, err := collection.InsertOne(context.TODO(), post)
 
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	return result
+	return result, err
 }
 
 // GetData from database
