@@ -6,7 +6,6 @@ import (
 	database "utils"
 )
 
-
 func main() {
   
 	database.Connect()
