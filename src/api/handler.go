@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	database "utils"
 )
@@ -31,6 +32,6 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
 	} else {
-		json.NewEncoder(w).Encode(res)
+		fmt.Println(res)
 	}
 }

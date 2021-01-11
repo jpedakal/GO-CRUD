@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -44,7 +43,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) (int, error) {
+func InsertData(name string, age int, city string) (interface{}, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
@@ -54,9 +53,9 @@ func InsertData(name string, age int, city string) (int, error) {
 		log.Fatal(err)
 	}
 
-	id := result.InsertedID.(primitive.ObjectID)
+	//id := result.InsertedID
 
-	return fmt.Println(id)
+	return result, err
 }
 
 // GetData from database
