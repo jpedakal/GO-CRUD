@@ -28,6 +28,7 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	res, err := database.InsertData(data.Name, data.Age, data.City)
+	w.Header().Set("Content-Type", "application/json")
 
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
