@@ -5,7 +5,6 @@ import (
 	"net/http"
 	database "utils"
 )
-
 func main() {
   
 	database.Connect()
@@ -13,4 +12,3 @@ func main() {
 
 	http.ListenAndServe(":8000", nil)
 }
-
