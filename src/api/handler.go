@@ -33,5 +33,6 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode(err)
 	} else {
 		fmt.Println(res)
+		json.NewEncoder(w).Encode(res)
 	}
 }
