@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"io"
 	"net/http"
 	database "utils"
 )
@@ -30,8 +29,8 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 	res, err := database.InsertData(data.Name, data.Age, data.City)
 
 	if err != nil {
-		io.
+		json.NewEncoder(w).Encode(err)
 	} else {
-		io.WriteSeeker(w, res)
+		json.NewEncoder(w).Encode(res)
 	}
 }
