@@ -43,3 +43,12 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		io.WriteString(w, "Document created")
 	}
 }
+
+// UpdateData of existing documents
+func UpdateData(w http.ResponseWriter, req *http.Request) {
+	name := req.URL.Query().Get("name")
+
+	res := database.UpdateData(name)
+
+	json.NewEncoder(w).Encode(res)
+}

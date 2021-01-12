@@ -63,19 +63,36 @@ func InsertData(name string, age int, city string) (interface{}, error) {
 
 // GetData from database
 func GetData() (interface{}, error) {
+	var results []bson.M
 	collection := dbConn.Collection("users")
-	opts := options.Find().SetSort(bson.D{{}})
-	result, err := collection.Find(context.TODO(), bson.D{{}},opts)
+	cursor, err := collection.Find(context.TODO(), bson.D{{}})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(*result)
-	return result, err
+
+	if err = cursor.All(context.TODO(), &results); err != nil {
+		log.Fatal(err)
+	}
+	return results, err
 }
 
 // UpdateData in database
-func UpdateData() {
+func UpdateData(name string) string {
+	collection := dbConn.Collection("users")
+	opts := options.Update().SetUpsert(true)
 
+	filter := bson.D{{"name", name}}
+	update := bson.D{{"$set", bson.D{{"city", "Hyderabad"}}}}
+
+	result, err := collection.UpdateOne(context.TODO(), filter, update, opts)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if result.MatchedCount != 0 {
+		return "Successfully updated"
+	}
+	return "Failed to update"
 }
 
 // DeleteData from database
