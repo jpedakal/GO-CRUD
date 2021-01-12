@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -43,7 +44,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) (interface {}, error) {
+func InsertData(name string, age int, city string) (interface{}, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 
@@ -62,7 +63,12 @@ func InsertData(name string, age int, city string) (interface {}, error) {
 
 // GetData from database
 func GetData() {
-
+	collection := dbConn.Collection("users")
+	result, err := collection.Find(context.TODO(), bson.D{{}})
+	if err != nil {
+		panic(err)
+	}
+	return result
 }
 
 // UpdateData in database

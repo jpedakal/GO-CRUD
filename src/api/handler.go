@@ -15,8 +15,13 @@ type myData struct {
 }
 
 // GetData from database
-func GetData() {
-
+func GetData(w http.ResponseWriter, req *http.Request) {
+	res, err := database.GetData()
+	w.Header().Set("Content-Type", "application/json")
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+	}
+	json.NewEncoder(w).Encode(res)
 }
 
 // PostData into database
