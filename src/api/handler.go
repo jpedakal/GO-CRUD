@@ -33,6 +33,7 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		json.NewEncoder(w).Encode(err)
 	} else {
+		fmt.Println(res)
 		io.WriteString(w, "Document created")
 	}
 }
