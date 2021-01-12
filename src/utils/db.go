@@ -62,13 +62,13 @@ func InsertData(name string, age int, city string) (interface{}, error) {
 }
 
 // GetData from database
-func GetData() interface{} {
+func GetData() (interface{}, error) {
 	collection := dbConn.Collection("users")
 	result, err := collection.Find(context.TODO(), bson.D{{}})
 	if err != nil {
 		panic(err)
 	}
-	return result
+	return result, err
 }
 
 // UpdateData in database
