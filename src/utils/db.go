@@ -96,6 +96,12 @@ func UpdateData(name string) string {
 }
 
 // DeleteData from database
-func DeleteData() {
-
+func DeleteData(name string) string {
+	collection := dbConn.Collection("users")
+	res, err := collection.DeleteOne(context.TODO(), bson.D{{"name", name}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("deleted %v documents\n", res.DeletedCount)
+	return "Deleted document successfully"
 }

@@ -52,3 +52,12 @@ func UpdateData(w http.ResponseWriter, req *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
+
+// DeleteData of existing documents
+func DeleteData(w http.ResponseWriter, req *http.Request) {
+	name := req.URL.Query().Get("name")
+
+	res := database.DeleteData(name)
+
+	json.NewEncoder(w).Encode(res)
+}
