@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -81,7 +82,7 @@ func UpdateData(name string) string {
 	collection := dbConn.Collection("users")
 	opts := options.Update().SetUpsert(true)
 
-	filter := bson.D{{"name", name}}
+	filter := bson.D{primitive.E{Key: "name", Value: name}}
 	update := bson.D{{"$set", bson.D{{"city", "Hyderabad"}}}}
 
 	result, err := collection.UpdateOne(context.TODO(), filter, update, opts)
@@ -96,12 +97,13 @@ func UpdateData(name string) string {
 }
 
 // DeleteData from database
-func DeleteData(name string) string {
+func DeleteData(name string) map[string]string {
+	result := map[string]string{"message": "Deleted document successfully"}
 	collection := dbConn.Collection("users")
-	res, err := collection.DeleteOne(context.TODO(), bson.D{{"name", name}})
+	res, err := collection.DeleteOne(context.TODO(), bson.D{primitive.E{Key: "name", Value: name}})
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Printf("deleted %v documents\n", res.DeletedCount)
-	return "Deleted document successfully"
+	return result
 }
