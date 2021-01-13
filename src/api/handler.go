@@ -58,6 +58,7 @@ func DeleteData(w http.ResponseWriter, req *http.Request) {
 	name := req.URL.Query().Get("name")
 
 	res := database.DeleteData(name)
+	w.Header().Set("Content-Type", "application/json")
 
 	json.NewEncoder(w).Encode(res)
 }
