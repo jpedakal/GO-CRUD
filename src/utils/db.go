@@ -92,7 +92,7 @@ func UpdateData(name string) string {
 	if result.MatchedCount != 0 {
 		return "Successfully updated"
 	}
-	return "Failed to update"
+	return "Failed to update document"
 }
 
 // DeleteData from database
