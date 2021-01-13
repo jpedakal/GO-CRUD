@@ -83,7 +83,7 @@ func UpdateData(name string) string {
 	opts := options.Update().SetUpsert(true)
 
 	filter := bson.D{primitive.E{Key: "name", Value: name}}
-	update := bson.D{{"$set", bson.D{{"city", "Hyderabad"}}}}
+	update := bson.D{{"$set", bson.D{primitive.E{Key: "city", Value: "Hyderabad"}}}}
 
 	result, err := collection.UpdateOne(context.TODO(), filter, update, opts)
 	if err != nil {
