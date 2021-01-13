@@ -12,5 +12,7 @@ func main() {
 	http.HandleFunc("/fetch", handler.GetData)
 	http.HandleFunc("/update", handler.UpdateData)
 	http.HandleFunc("/delete", handler.DeleteData)
+	http.HandleFunc("/register", handler.DeleteData)
+	http.HandleFunc("/login", handler.DeleteData)
 	http.ListenAndServe(":8000", nil)
 }
