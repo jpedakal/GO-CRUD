@@ -62,6 +62,8 @@ func DeleteData(w http.ResponseWriter, req *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
+
+// Register to export
 func Register(w http.ResponseWriter, req *http.Request) {
 	name := req.URL.Query().Get("name")
 
@@ -71,6 +73,7 @@ func Register(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
+// Login to export
 func Login(w http.ResponseWriter, req *http.Request) {
 	name := req.URL.Query().Get("name")
 
