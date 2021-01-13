@@ -71,7 +71,7 @@ func Register(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
-func DeleteData(w http.ResponseWriter, req *http.Request) {
+func Login(w http.ResponseWriter, req *http.Request) {
 	name := req.URL.Query().Get("name")
 
 	res := database.DeleteData(name)
