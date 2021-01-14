@@ -83,6 +83,8 @@ func Register(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
+	//password := data.Password
+
 	payload := map[string]string{"name": data.Name, "email": data.Email, "password": data.Password, "city": data.City}
 	res, err := database.InsertData(payload)
 	w.Header().Set("Content-Type", "application/json")
@@ -104,3 +106,4 @@ func Login(w http.ResponseWriter, req *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
+
