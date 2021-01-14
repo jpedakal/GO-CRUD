@@ -13,6 +13,6 @@ func main() {
 	http.HandleFunc("/update", handler.UpdateData)
 	http.HandleFunc("/delete", handler.DeleteData)
 	http.HandleFunc("/register", handler.Register)
-	http.HandleFunc("/login", handler.DeleteData)
+	http.HandleFunc("/login", handler.Login)
 	http.ListenAndServe(":8000", nil)
 }
