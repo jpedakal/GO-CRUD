@@ -77,6 +77,9 @@ func Register(w http.ResponseWriter, req *http.Request) {
 
 	var data register
 	err := decoder.Decode(&data)
+	if err != nil {
+		panic(err)
+	}
 
 }
 
