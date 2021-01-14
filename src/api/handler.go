@@ -2,8 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 	database "utils"
 )
@@ -32,6 +30,7 @@ func GetData(w http.ResponseWriter, req *http.Request) {
 }
 
 // PostData into database
+/*
 func PostData(w http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 
@@ -50,6 +49,7 @@ func PostData(w http.ResponseWriter, req *http.Request) {
 		io.WriteString(w, "Document created")
 	}
 }
+*/
 
 // UpdateData of existing documents
 func UpdateData(w http.ResponseWriter, req *http.Request) {
@@ -81,7 +81,7 @@ func Register(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
-	payload := map[string]string{"name":data.Name, "email":data.Email, "password":data.Password,"city":data.City}
+	payload := map[string]string{"name": data.Name, "email": data.Email, "password": data.Password, "city": data.City}
 	res, err := database.InsertData(payload)
 
 }
