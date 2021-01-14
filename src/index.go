@@ -8,11 +8,11 @@ import (
 func main() {
   
 	database.Connect()
-	http.HandleFunc("/insert", handler.PostData)
+	//http.HandleFunc("/insert", handler.PostData)
 	http.HandleFunc("/fetch", handler.GetData)
 	http.HandleFunc("/update", handler.UpdateData)
 	http.HandleFunc("/delete", handler.DeleteData)
-	http.HandleFunc("/register", handler.DeleteData)
+	http.HandleFunc("/register", handler.Register)
 	http.HandleFunc("/login", handler.DeleteData)
 	http.ListenAndServe(":8000", nil)
 }
