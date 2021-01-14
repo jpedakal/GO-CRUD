@@ -45,7 +45,7 @@ func Connect() {
 }
 
 // InsertData to database
-func InsertData(name string, age int, city string) (interface{}, error) {
+func InsertData(payload map[string]string) (interface{}, error) {
 	post := Post{name, age, city}
 	collection := dbConn.Collection("users")
 

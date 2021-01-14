@@ -81,7 +81,8 @@ func Register(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
-	res, err := database.InsertData()
+	payload := map[string]string{"name":data.Name, "email":data.Email, "password":data.Password,"city":data.City}
+	res, err := database.InsertData(payload)
 
 }
 
