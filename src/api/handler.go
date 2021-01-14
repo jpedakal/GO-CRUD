@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
+	"io"
 	"net/http"
 	database "utils"
 )
@@ -13,7 +15,7 @@ type myData struct {
 }
 
 type register struct {
-	Name     string `json:"name`
+	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 	City     string `json:"city"`
@@ -83,7 +85,14 @@ func Register(w http.ResponseWriter, req *http.Request) {
 
 	payload := map[string]string{"name": data.Name, "email": data.Email, "password": data.Password, "city": data.City}
 	res, err := database.InsertData(payload)
+	w.Header().Set("Content-Type", "application/json")
 
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+	} else {
+		fmt.Println(res)
+		io.WriteString(w, "Document created")
+	}
 }
 
 // Login to export
