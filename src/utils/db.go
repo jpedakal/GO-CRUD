@@ -46,10 +46,10 @@ func Connect() {
 
 // InsertData to database
 func InsertData(payload map[string]string) (interface{}, error) {
-	post := Post{name, age, city}
+	//post := Post{payload}
 	collection := dbConn.Collection("users")
 
-	result, err := collection.InsertOne(context.TODO(), post)
+	result, err := collection.InsertOne(context.TODO(), payload)
 
 	if err != nil {
 		log.Fatal(err)
