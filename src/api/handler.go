@@ -14,10 +14,11 @@ type myData struct {
 	City string `json:"city"`
 }
 
-type register struct{
-	Name string `json:"name`
-	Email string `json:"email"`
+type register struct {
+	Name     string `json:"name`
+	Email    string `json:"email"`
 	Password string `json:"password"`
+	City     string `json:"city"`
 }
 
 // GetData from database
@@ -73,6 +74,9 @@ func DeleteData(w http.ResponseWriter, req *http.Request) {
 func Register(w http.ResponseWriter, req *http.Request) {
 
 	decoder := json.NewDecoder(req.Body)
+
+	var data register
+	err := decoder.Decode(&data)
 
 }
 
