@@ -14,6 +14,12 @@ type myData struct {
 	City string `json:"city"`
 }
 
+type register struct{
+	Name string `json:"name`
+	Email string `json:"email"`
+	Password string `json:"password"`
+}
+
 // GetData from database
 func GetData(w http.ResponseWriter, req *http.Request) {
 	res, err := database.GetData()
@@ -65,12 +71,9 @@ func DeleteData(w http.ResponseWriter, req *http.Request) {
 
 // Register to export
 func Register(w http.ResponseWriter, req *http.Request) {
-	name := req.URL.Query().Get("name")
 
-	res := database.DeleteData(name)
-	w.Header().Set("Content-Type", "application/json")
+	decoder := json.NewDecoder(req.Body)
 
-	json.NewEncoder(w).Encode(res)
 }
 
 // Login to export
