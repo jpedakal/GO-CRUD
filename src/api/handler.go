@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	algorithm "secure"
 	database "utils"
 )
 
@@ -83,9 +84,14 @@ func Register(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
-	//password := data.Password
+	text := []byte(data.Password)
+	key := []byte("secret")
 
-	payload := map[string]string{"name": data.Name, "email": data.Email, "password": data.Password, "city": data.City}
+	hash, err := algorithm.Encrypt(text, key)
+	hashPwd := algorithm.BytesToString(hash)
+	
+	payload := map[string]string{"name": data.Name, "email": data.Email, "password": hashPwd, "city": data.City}
+	fmt.Println("hash", hash)
 	res, err := database.InsertData(payload)
 	w.Header().Set("Content-Type", "application/json")
 
@@ -106,4 +112,3 @@ func Login(w http.ResponseWriter, req *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
-
