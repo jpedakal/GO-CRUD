@@ -81,6 +81,8 @@ func Register(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
+	res, err := database.InsertData()
+
 }
 
 // Login to export
