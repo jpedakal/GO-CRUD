@@ -89,7 +89,7 @@ func Register(w http.ResponseWriter, req *http.Request) {
 
 	hash, err := algorithm.Encrypt(text, key)
 	hashPwd := algorithm.BytesToString(hash)
-	
+	fmt.Println("hashPwd", hashPwd)
 	payload := map[string]string{"name": data.Name, "email": data.Email, "password": hashPwd, "city": data.City}
 	fmt.Println("hash", hash)
 	res, err := database.InsertData(payload)
