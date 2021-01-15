@@ -8,6 +8,7 @@ import (
 	"io"
 	"reflect"
 	"unsafe"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // Encrypt to export
