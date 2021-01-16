@@ -107,4 +107,3 @@ func DeleteData(name string) map[string]string {
 	fmt.Printf("deleted %v documents\n", res.DeletedCount)
 	return result
 }
-
